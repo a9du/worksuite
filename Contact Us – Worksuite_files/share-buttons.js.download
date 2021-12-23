@@ -1,0 +1,20 @@
+jQuery(document).ready(function() {
+  jQuery('body').on('click', '.entry-share-btns a', function(e) {
+    e.preventDefault();
+    var link = jQuery(this).attr('href');
+    var width = 550;
+    var height = 520;
+    var popupName = 'popup_' + width + 'x' + height;
+    var left = (screen.width-width) / 2;
+    var top = (screen.height-height) / 2;
+    var params = 'width=' + width + ',height=' + height + ',location=no,menubar=no,scrollbars=yes,status=no,toolbar=no,left=' + left + ',top=' + top;
+    if(!jQuery(this).hasClass('entry-share-btn-twitter-link')) { // fix for twitter
+        window[popupName] = window.open(link, popupName, params);
+        if (window.focus) {
+          window[popupName].focus();
+        }
+    }
+    return true;
+  });
+});
+
